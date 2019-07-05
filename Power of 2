@@ -1,0 +1,47 @@
+int Solution::power(string A) 
+{
+    int n;
+    if(A=="1" or A=="0")
+        return 0;
+    n=A.size();
+    while(A!="1")
+    {
+        n=A.size();
+        if((A[n-1]-'0')%2!=0)
+            return 0;
+        
+        int num=0;
+        string s="";
+        for(int i=0;i<A.size();i++)
+        {
+            if(A[i]-'0'>=2)
+            {
+                int tmp=num*10+A[i]-'0';
+                int quo=tmp/2;
+                s+=(quo+'0');
+                num=tmp%2;
+                continue;
+            }
+            
+            int tmp=num*10+A[i]-'0';
+            if(tmp>=2)
+            {
+                int quo=tmp/2;
+                s+=(quo+'0');
+                num=tmp%2;
+                continue;
+            }
+            
+            if(i==0)
+            {
+                num=tmp;
+                continue;
+            }
+            
+            s+='0';
+            num=tmp;
+        }
+        A=s;
+    }
+    return 1;
+}
